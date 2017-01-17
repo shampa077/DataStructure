@@ -1,0 +1,16 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+        <link rel='stylesheet' type='text/css' href='style1.css'>
+</head>
+
+<body>
+
+
+<div>
+<img id="cat_img" class="image" src="cat.jpg">
+</div>
+
+</body>
+</html>
