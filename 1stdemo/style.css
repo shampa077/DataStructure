@@ -1,0 +1,51 @@
+.title
+{
+
+	font-style: italic;
+	color:grey;
+	font-size: 40px;
+    background-color: yellow;
+	padding-top: 50px;
+    padding-right: 50px;
+   padding-bottom: 50px;
+    padding-left: 50px;
+    border-color: black;
+    border-style: solid;
+}
+.image: {
+
+width:400px;
+ border-style: solid;
+}
+.chart{
+	width:500px;
+	height:400px;
+	border:50px;
+	position:absolute;
+}
+.circle1{
+
+    
+	stroke:green;
+	fill:white;
+	stroke-width:5;
+
+}
+.overall
+{
+	border:50px;
+	padding-top: 50px;
+    padding-right: 50px;
+   padding-bottom: 50px;
+    padding-left: 100px;
+    background-color: yellow;
+}
+.half-circle {
+    width: 200px;
+    height: 100px; /* as the half of the width */
+    background-color: gold;
+    border-top-left-radius: 110px;  /* 100px of height + 10px of border */
+    border-top-right-radius: 110px; /* 100px of height + 10px of border */
+    border: 10px solid gray;
+    border-bottom: 0;
+}
