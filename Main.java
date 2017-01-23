@@ -225,7 +225,7 @@ public class Main {
 	}
 	public static void TestDoubleCircularLinkedListSorted()
 	{
-		System.out.println("Testing DoubleCircularLinkedList with Integer");
+		System.out.println("Testing DoubleCircularLinkedList with Sorted Integer");
 		DoubleCircularLinkedList <Integer> l= new DoubleCircularLinkedList<Integer>();
 		
 		int choice=-1;
