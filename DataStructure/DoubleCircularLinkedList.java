@@ -1,10 +1,12 @@
 package DataStructure;
 import java.util.*;
+import DataStructure.ListElement;
 
-public class LinkedList<T>
+public class DoubleCircularLinkedList<T>
 {
 	public ListElement<T> head;
-	public LinkedList()
+
+	public DoubleCircularLinkedList()
 	{
 		head=null;
 	}
@@ -13,51 +15,24 @@ public class LinkedList<T>
 		if (head==null)
 		{
 			head=new ListElement<T>(val);
-			head.setNext(null);
+			head.setNext(head);
+			head.setPrevious(head);
 		}
 		else
 		{
 			ListElement<T> temp=head;
-			while(temp.next()!=null)
+			while(temp.next()!=head)
 			{
 				temp=temp.next();
 	
 			}
 			ListElement<T> newItem =new ListElement<T>(val);
-			newItem.setNext(null);
+			newItem.setNext(head);
 			temp.setNext(newItem);
+			newItem.setPrevious(temp);
+			head.setPrevious(newItem);
 			
 		}
-	}
-	public int compare(T one, T two)
-	{
-		if (one instanceof Integer)
-		{
-			Integer first=(Integer) one;
-			Integer second=(Integer) two;
-			
-			return first.compareTo(second);
-			
-		}
-		else if (one instanceof String)
-		{
-			String first=(String) one;
-			String second=(String) two;
-			return first.compareTo(second);
-		}
-		else if (one instanceof GenericClass)
-		{
-			GenericClass first=(GenericClass) one;
-			GenericClass second=(GenericClass) two;
-			return first.compareObject(second);
-			
-		}
-		else
-		{
-			return -1;
-		}
-		
-		
 	}
 	
 	public int compare(T one, T two,char order)
@@ -102,7 +77,8 @@ public class LinkedList<T>
 		if (head==null)
 		{
 			head=new ListElement<T>(val);
-			head.setNext(null);
+			head.setNext(head);
+			head.setPrevious(head);
 		}
 		else
 		{
@@ -110,20 +86,31 @@ public class LinkedList<T>
 			if (compare(head.value(),val,type)>0)
 			{
 				ListElement<T> newItem =new ListElement<T>(val);
-				newItem.setNext(temp);
+				newItem.setPrevious(head.previous());
+				newItem.setNext(head);
+				head.previous().setNext(newItem);
+				head.setPrevious(newItem);
 				head=newItem;
 			}
 			else
 			{
-				while(temp.next()!=null  && compare(temp.next().value(),val,type)<=0)
+				while(temp.next()!=head && compare(temp.next().value(),val,type)<=0)
 				{
 					temp=temp.next();
 	
 				}
 				
 				ListElement<T> newItem =new ListElement<T>(val);
+				
+				
 				newItem.setNext(temp.next());
+				newItem.setPrevious(temp);
 				temp.setNext(newItem);
+				if (newItem.next()==head)
+				{
+					head.setPrevious(newItem);
+				}
+				
 				
 			}
 			
@@ -140,17 +127,19 @@ public class LinkedList<T>
 			ListElement<T> temp=head;
 		    if (head.value()==val)
 			{
+				
+				head.next().setPrevious(head.previous());
 				head=head.next();
 				System.out.println("Item at front deleted");
 			}
 			else
 			{
 				
-				while(temp.next()!=null && temp.next().value()!=val)
+				while(temp.next()!=head && temp.next().value()!=val)
 				{
 					temp=temp.next();
 				}
-				if (temp.next()==null)
+				if (temp.next()==head)
 				{
 					if (temp.value()!=val)
 					{
@@ -161,7 +150,9 @@ public class LinkedList<T>
 				}
 				else if (temp.next().value()==val)
 				{
+					(temp.next().next()).setPrevious(temp);
 					temp.setNext(temp.next().next());
+					//temp.previous().setNext(elem);
 					System.out.println("Item deleted");
 				}
 				
@@ -173,13 +164,23 @@ public class LinkedList<T>
 	{
 		ListElement<T> temp=head;
 		System.out.println("List Content");
-		while(temp!=null)
+		if (temp==null)
+			System.out.println("empty list");
+		else if (head.next()==head)
 		{
-			System.out.print(temp.toString()+"\t");
-			temp=temp.next();
-
+			System.out.print(head.previous().toString()+"<-"+head.toString()+"->"+head.next().toString()+"\n");
 		}
-		System.out.println("end");
+		else{
+			do
+			{
+				System.out.print(temp.previous().toString()+"<-"+temp.toString()+"->"+temp.next().toString()+"\t");
+				temp=temp.next();
+
+			}while (temp.next()!=head);
+			System.out.print(temp.previous().toString()+"<-"+temp.toString()+"->"+temp.next().toString()+"\t");
+		
+			System.out.println("end");
+		}
 	}
 	
 }
