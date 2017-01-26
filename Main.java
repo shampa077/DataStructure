@@ -1,9 +1,11 @@
 import java.util.*;
 
-
 import DataStructure.LinkedList;
 import DataStructure.DoubleCircularLinkedList;
 import DataStructure.GenericClass;
+import DataStructure.ListElement;
+import DataStructure.Stack;
+import DataStructure.Queue;
 
 class Name extends GenericClass{
 	int age;
@@ -225,7 +227,7 @@ public class Main {
 	}
 	public static void TestDoubleCircularLinkedListSorted()
 	{
-		System.out.println("Testing DoubleCircularLinkedList with Sorted Integer");
+		System.out.println("Testing DoubleCircularLinkedList with Integer");
 		DoubleCircularLinkedList <Integer> l= new DoubleCircularLinkedList<Integer>();
 		
 		int choice=-1;
@@ -270,15 +272,53 @@ public class Main {
 		
 		
 	}
+	public static void testStack()
+	{
+		Stack<Integer> s= new Stack<Integer>();
+		s.push(5);
+		s.push(10);
+		s.push(20);
+		s.push(15);
+		s.push(25);
+		s.printStack();
+
+		System.out.println("Size:"+s.getSize());
+		ListElement<Integer> ret;
+		for (int i=0; !s.isEmpty(); i++)
+		{
+			ret=s.pop();
+		}
+	  
+	}
+	public static void testQueue()
+	{
+		Queue<Integer> s= new Queue<Integer>();
+		s.enqueue(5);
+		s.enqueue(10);
+		s.enqueue(20);
+		s.enqueue(15);
+		s.enqueue(25);
+		s.printQueue();
+
+		System.out.println("Size:"+s.getSize());
+		ListElement<Integer> ret;
+		for (int i=0; !s.isEmpty(); i++)
+		{
+			ret=s.dequeue();
+		}
+	  
+	}
 	public static Scanner scan=new Scanner(System.in);
 	public static void main(String args[])
 	{
-		TestLinkedList();
+		/*TestLinkedList();
 		TestLinkedListSorted();
 		TestLinkedListObject();
 		TestDoubleCircularLinkedList();
 		TestDoubleCircularLinkedListSorted();
-		TestDoubleCircularLinkedListObject();
+		TestDoubleCircularLinkedListObject();*/
+		testStack();
+		testQueue();
 	}
 
 }

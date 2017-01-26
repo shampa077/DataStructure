@@ -8,7 +8,7 @@ public class LinkedList<T>
 	{
 		head=null;
 	}
-	public void addElement(T val)
+	public void addElement(T val) // add element in rear
 	{
 		if (head==null)
 		{
@@ -26,6 +26,22 @@ public class LinkedList<T>
 			ListElement<T> newItem =new ListElement<T>(val);
 			newItem.setNext(null);
 			temp.setNext(newItem);
+			
+		}
+	}
+	public void addElementFront(T val) //add element in front
+	{
+		if (head==null)
+		{
+			head=new ListElement<T>(val);
+			head.setNext(null);
+		}
+		else
+		{
+			ListElement<T> temp=head;
+			ListElement<T> newItem =new ListElement<T>(val);
+			newItem.setNext(temp);
+			head=newItem;
 			
 		}
 	}
@@ -129,6 +145,49 @@ public class LinkedList<T>
 			
 		}
 	}
+	public ListElement<T> deleteElementFront()
+	{
+		if (head==null)
+		{
+			System.out.println("Empty list");
+			return null;
+		}
+		else
+		{
+			ListElement<T> temp=head;
+			head=head.next();
+			System.out.println("Item at front deleted");
+			return temp;
+		}
+		
+	}
+	public ListElement<T> deleteElementRear()
+	{
+		if (head==null)
+		{
+			System.out.println("Empty list");
+			return null;
+		}
+		else if (head.next()==null)
+		{
+			ListElement<T> temp=head;
+			head=null;
+			System.out.println("List is now empty");
+			return temp;
+		}
+		else
+		{
+			ListElement<T> temp=head;
+			while(temp.next().next()!=null)
+			{
+				temp=temp.next();
+			}
+			ListElement<T> temp1=temp.next();
+			temp.setNext(null);
+			return temp1;
+			
+		}
+	}
 	public void deleteElement(T val)
 	{
 		if (head==null)
@@ -168,6 +227,19 @@ public class LinkedList<T>
 			
 			}
 		}
+	}
+	public int getSize()
+	{
+		ListElement<T> temp=head;
+		int s=0;
+		
+		while(temp!=null)
+		{
+			s++;
+			temp=temp.next();
+		}
+		return s;
+		
 	}
 	public void printList()
 	{
